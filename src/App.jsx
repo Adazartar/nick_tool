@@ -1,3 +1,14 @@
+/*
+
+To Redeploy:
+
+git add commit push to main
+npm run build
+npm run deploy
+
+*/
+
+
 import { useState, useEffect } from 'react'
 import './App.css'
 
@@ -6,13 +17,15 @@ function App() {
 		["Fern",5,0,0,0,"plant"],
 		["Oak Tree",8,0,0,0,"plant"],
 		["Grass Patch",6,0,0,0,"plant"],
+		["Berry",8,0,0,0,"plant"],
 		["Deer",0,2,4,0,"herbivore"],
 		["Rabbit",0,1,1,0,"herbivore"],
 		["Forest Hare",0,2,2,0,"herbivore"],
 		["Wolf",0,0,0,6,"carnivore"],
 		["Lion",0,0,0,9,"carnivore"],
 		["Fox",0,0,0,2,"carnivore"],
-		["Eagle",0,0,0,2,"carnivore"]
+		["Eagle",0,0,0,2,"carnivore"],
+		["Bear",0,0,0,2,"apex"],
   	];
 
 	const json_cards = convertToJSON(cards);
@@ -102,25 +115,33 @@ function App() {
 	  	<div>Plants:</div>
 		<div className="card-box">
   		{current_cards
-    		.filter(card => card.type === "plant") // Filter only plants
+    		.filter(card => card.type === "plant")
     		.map((card, i) => (
-      			<div key={i} onClick={() => handleDeselect(card)} className="card">{card.name} ({card.type})</div>
+      			<div key={i} onClick={() => handleDeselect(card)} className="card">{card.name}</div>
     		))}
 		</div>
 	  	<div>Herbivores: </div>
 		<div className="card-box">
   		{current_cards
-    		.filter(card => card.type === "herbivore") // Filter only plants
+    		.filter(card => card.type === "herbivore")
     		.map((card, i) => (
-      			<div key={i} onClick={() => handleDeselect(card)} className="card">{card.name} ({card.type})</div>
+      			<div key={i} onClick={() => handleDeselect(card)} className="card">{card.name}</div>
     		))}
 		</div>
 	  	<div>Carnivores: </div>
 		<div className="card-box">
   		{current_cards
-    		.filter(card => card.type === "carnivore") // Filter only plants
+    		.filter(card => card.type === "carnivore")
     		.map((card, i) => (
-      			<div key={i} onClick={() => handleDeselect(card)} className="card">{card.name} ({card.type})</div>
+      			<div key={i} onClick={() => handleDeselect(card)} className="card">{card.name}</div>
+    		))}
+		</div>
+		<div>Apex: </div>
+		<div className="card-box">
+  		{current_cards
+    		.filter(card => card.type === "apex")
+    		.map((card, i) => (
+      			<div key={i} onClick={() => handleDeselect(card)} className="card">{card.name}</div>
     		))}
 		</div>
 
